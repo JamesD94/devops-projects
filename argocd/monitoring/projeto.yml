@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: monitoring
+  namespace: argocd
+  finalizers: [resources-finalizer.argocd.argoproj.io]
+spec:
+  clusterResourceWhitelist: [{group: '*', kind: '*'}]
+  namespaceResourceWhitelist: [{group: '*', kind: '*'}]
+  sourceRepos: ['*']
+  destinations: [
+   { server: https://cattle.funpresp.com.br/k8s/clusters/c-m-r5hxqmvv, namespace: '*' }, # k8s-sistemas-126
+   { server: https://cattle.funpresp.com.br/k8s/clusters/local, namespace: '*' }, # k8s-operacao-126
+  ]

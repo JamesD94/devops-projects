@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-k8s-operacao-126
+  namespace: argocd
+  labels:
+    funpresp.io/ambiente: k8s-operacao-126
+spec:
+  project: monitoring
+  syncPolicy: { automated: { prune: true, selfHeal: true } }
+  destination: { name: k8s-operacao-126, namespace: monitoring, server: '' }
+  source:
+    repoURL: https://gitlab.funpresp.com.br/g-infraestrutura/g-kubernetes/gitops.git
+    targetRevision: k8s-operacao-126
+    path: monitoring
+    directory: { recurse: true }
